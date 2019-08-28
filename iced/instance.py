@@ -34,11 +34,23 @@ class Instance():
         self.containing_game_object = new_game_object
         self.pos_x = new_x
         self.pos_y = new_y
+        self.containing_game_object.pos_x = self.pos_x
+        self.containing_game_object.pos_y = self.pos_y
 
     def show(self):
         """show the instance"""
         System.screen.blit(self.containing_game_object.image_surface, (self.pos_x, self.pos_y))
 
+    def loop(self):
+        """"the loop"""
+        self.show()
+        self.containing_game_object.loop()
+        self.pos_x = self.containing_game_object.pos_x
+        self.pos_y = self.containing_game_object.pos_y
+
     def get_pos(self) -> (int, int):
         """get the position"""
         return (self.pos_x, self.pos_y)
+
+NULL_INSTANCE = Instance()
+NULL_INSTANCE.create(Object(), 32, 32)

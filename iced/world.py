@@ -1,6 +1,7 @@
 # world.py: the operator, manager of the game.
 #
 
-class world(object):
-    current_room = 0                # the current room
+from iced.room import Room
+class World(object):
+    current_room = Room()          # the current room
     #Todo: finish the world

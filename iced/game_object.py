@@ -23,12 +23,15 @@ For more, see the documentation.
 
 import pygame
 
+
 class Object():
     """The game object"""
 
     def __init__(self):
         self.image = 0
-        self.image_surface = 0
+        self.image_surface = pygame.surface.Surface((0, 0))
+        self.pos_x = 0
+        self.pos_y = 0
 
     def set_image_by_filename(self, new_image_filename: str):
         """To set the image by filename and path"""
@@ -41,13 +44,10 @@ class Object():
         self.image_surface = new_image_surface
 
     def on_create(self):
-        """(to be implied) the function executes when created"""
-        raise NotImplementedError
+        """the function executes when created"""
 
     def loop(self):
-        """(to be implied) the function executes every game loop"""
-        raise NotImplementedError
+        """the function executes every game loop"""
 
     def on_destroy(self):
-        """(to be implied) the function executes when destroyed"""
-        raise NotImplementedError
+        """the function executes when destroyed"""

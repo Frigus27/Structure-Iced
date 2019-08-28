@@ -12,22 +12,25 @@ import pygame
 from pygame.locals import QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION, KEYDOWN, KEYUP
 
 from iced.settings import settings
-
+from iced.world import World
 from iced.system import System
+from iced.room import Room
+from iced.functions import *
 
 class Game(object):
     """The main game object"""
 
-    def initialize(self):
+    def initialize(self, start_room: Room):
         """Initialize the pygame and the screen"""
         pygame.init()
-        System.screen = pygame.display.set_mode(settings.window.size, settings.window.fullscreen)
+        System.screen = pygame.display.set_mode(settings.window.size, settings.window.is_fullscreen)
         pygame.display.set_caption(settings.window.caption)
+        room_goto(start_room)
 
     def loop(self):
         """The main game loop operator"""
         while True:
-            # event handler
+            # TODO: event handler
             for event in pygame.event.get():
                 if event.type == QUIT:
                     self.quit()
@@ -41,7 +44,7 @@ class Game(object):
                     pass
                 elif event.type == KEYUP:
                     pass
-
+            World.current_room.loop()
             # update the display
             pygame.display.update()
 
@@ -49,7 +52,7 @@ class Game(object):
         """The code when quit the game"""
         exit()
 
-    def main(self):
+    def main(self, start_room: Room):
         """The only callable function to start a game"""
-        self.initialize()
+        self.initialize(start_room)
         self.loop()
