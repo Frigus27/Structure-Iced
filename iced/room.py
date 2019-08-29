@@ -8,8 +8,10 @@ act.
 
 For more, see the documentation.
 """
-
+import pygame
 from iced.instance import Instance, NULL_INSTANCE
+from iced.settings import settings
+from iced.system import System
 
 def null_function():
     """Just to be a function value means nothing"""
@@ -20,6 +22,15 @@ class Room():
         self.instance_container = [NULL_INSTANCE]
         self.creation_function = null_function
         self.created = False
+        self.background_surface = pygame.surface.Surface((800, 600))
+
+    def set_background(self, new_background: pygame.surface.Surface):
+        """Set the surface sent the current background"""
+        self.background_surface = new_background
+
+    def show_background(self):
+        """Show the background"""
+        System.screen.blit(self.background_surface, (0, 0))
 
     def creation_code(self, creation_function):
         """Set the creation code by sending the function"""
@@ -41,7 +52,7 @@ class Room():
                 i.containing_game_object.on_create()
             self.created = True
             i.show()
-            i.containing_game_object.loop()
+            i.loop()
 
 class RoomManager():
     """The manager of all the rooms"""

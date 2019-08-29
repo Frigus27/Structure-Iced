@@ -15,3 +15,7 @@ import pygame
 class System():
     """The system object"""
     screen = pygame.surface.Surface((0, 0))
+    """The clock"""
+    clock = pygame.time.Clock()
+    """The default font"""
+    #default_font = pygame.font.SysFont("宋体", 24)

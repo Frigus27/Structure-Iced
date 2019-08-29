@@ -30,6 +30,10 @@ class Game(object):
     def loop(self):
         """The main game loop operator"""
         while True:
+            # erase the screen
+            World.current_room.show_background()
+            
+
             # TODO: event handler
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -47,6 +51,9 @@ class Game(object):
             World.current_room.loop()
             # update the display
             pygame.display.update()
+            # tick
+            System.clock.tick(60)
+            
 
     def quit(self):
         """The code when quit the game"""
