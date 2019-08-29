@@ -19,7 +19,6 @@ For more, see the documentation.
 from iced.game_object import Object
 from iced.system import System
 
-import pygame
 
 class Instance():
     """
