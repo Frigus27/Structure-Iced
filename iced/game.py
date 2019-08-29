@@ -32,28 +32,20 @@ class Game(object):
         while True:
             # erase the screen
             World.current_room.show_background()
-            
 
             # TODO: event handler
             for event in pygame.event.get():
                 if event.type == QUIT:
                     self.quit()
-                elif event.type == MOUSEBUTTONDOWN:
-                    pass
-                elif event.type == MOUSEBUTTONUP:
-                    pass
-                elif event.type == MOUSEMOTION:
-                    pass
-                elif event.type == KEYDOWN:
-                    pass
-                elif event.type == KEYUP:
-                    pass
+                System.mouse_position = pygame.mouse.get_pos()
+                System.mouse_state = pygame.mouse.get_pressed()
+            
+            # loop the room
             World.current_room.loop()
             # update the display
             pygame.display.update()
             # tick
             System.clock.tick(60)
-            
 
     def quit(self):
         """The code when quit the game"""

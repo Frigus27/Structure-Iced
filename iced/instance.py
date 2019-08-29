@@ -44,7 +44,6 @@ class Instance():
         self.show()
         
         self.containing_game_object.loop()
-        self.containing_game_object.instance_x += 1
         self.pos_x, self.pos_y = self.containing_game_object.get_instance_pos()
 
     def get_pos(self) -> (int, int):

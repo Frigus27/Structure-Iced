@@ -24,17 +24,18 @@ class MyObject(Object):
             else:
                 self.raising = True
         self.image_surface.fill((self.k, self.k, self.k))
-        self.instance_x += 1
-        self.instance_y += 1
-        if self.instance_x >= settings.window.size[0]:
-            self.instance_x -= settings.window.size[0] + 200
-        if self.instance_y >= settings.window.size[1]:
-            self.instance_y -= settings.window.size[1] + 100
+        self.InstanceVariables.pos_x += 1
+        self.InstanceVariables.pos_y += 1
+        if self.InstanceVariables.pos_x >= settings.window.size[0]:
+            self.InstanceVariables.pos_x -= settings.window.size[0] + 200
+        if self.InstanceVariables.pos_y >= settings.window.size[1]:
+            self.InstanceVariables.pos_y -= settings.window.size[1] + 100
+        
 
 myObj = MyObject()
 myObj.set_image_by_surface(Surface((200, 100)))
 inst = Instance()
-inst.create(myObj, 100, 100)
+inst.create(myObj, settings.window.size[0] // 2, 100)
 
 MyRoom = Room()
 back = Surface(settings.window.size)

@@ -17,5 +17,7 @@ class System():
     screen = pygame.surface.Surface((0, 0))
     """The clock"""
     clock = pygame.time.Clock()
-    """The default font"""
-    #default_font = pygame.font.SysFont("宋体", 24)
+    """The position of the mouse"""
+    mouse_position = (0, 0)
+    """The state of the mouse"""
+    mouse_state = (False, False, False)

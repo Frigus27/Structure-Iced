@@ -27,11 +27,13 @@ import pygame
 class Object():
     """The game object"""
 
+    class InstanceVariables():
+        pos_x = 0
+        pos_y = 0
+
     def __init__(self):
         self.image = 0
         self.image_surface = pygame.surface.Surface((0, 0))
-        self.instance_x = 0
-        self.instance_y = 0
 
     def set_image_by_filename(self, new_image_filename: str):
         """To set the image by filename and path"""
@@ -54,9 +56,9 @@ class Object():
 
     def update_instance_pos(self, new_pos_x: int, new_pos_y: int):
         """update the position of the instance of the object"""
-        self.instance_x = new_pos_x
-        self.instance_y = new_pos_y
+        self.InstanceVariables.pos_x = new_pos_x
+        self.InstanceVariables.pos_y = new_pos_y
 
     def get_instance_pos(self):
         """get the position of the instance of the object"""
-        return self.instance_x, self.instance_y
+        return self.InstanceVariables.pos_x, self.InstanceVariables.pos_y
