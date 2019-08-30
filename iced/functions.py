@@ -6,12 +6,26 @@ Define and implement the game functions that are needed.
 For more, see the documentation.
 """
 import pygame
+from pygame.locals import *
 
 from iced.room import Room, RoomManager
 from iced.world import World
+from iced.game_object import Object
+from iced.instance import Instance
+from iced.system import System
+from iced.settings import settings
 
 def null_function():
     """Just to be a function value means nothing"""
+
+def offset_rect(pos_x: int, pos_y: int, rect: pygame.Rect):
+    """offset the rect by the position sent"""
+    return pygame.Rect(pos_x, pos_y, pos_x + rect.width, pos_y + rect.height)
+
+# About the game
+def set_caption(new_caption: str):
+    """Set the caption of the game"""
+    settings.window.caption = new_caption
 
 # About the easy test
 def is_point_in_rect(pos_x: int, pos_y: int, rect: pygame.Rect):
@@ -30,6 +44,18 @@ def room_goto(new_room: Room):
         raise ValueError
     
 # About the mouse
-def mouse_left_down_on():
-    """About the mouse"""
-    # TODO: do with it
+def is_mouse_left_down(the_object: Object):
+    """returns if the left key of the mouse is on the instance of the object"""
+    if System.mouse_state[0] == 1:
+        rect = offset_rect(the_object.InstanceVariables.pos_x, the_object.InstanceVariables.pos_y, the_object.image_surface.get_rect())
+        if is_point_in_rect(System.mouse_position[0], System.mouse_position[1], rect):
+            return True
+    return False
+
+def is_mouse_right_down(the_object: Object):
+    """returns if the right key of the mouse is on the instance of the object"""
+    if System.mouse_state[2] == 1:
+        rect = offset_rect(the_object.InstanceVariables.pos_x, the_object.InstanceVariables.pos_y, the_object.image_surface.get_rect())
+        if is_point_in_rect(System.mouse_position[0], System.mouse_position[1], rect):
+            return True
+    return False

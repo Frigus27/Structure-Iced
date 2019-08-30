@@ -29,6 +29,8 @@ class Game(object):
 
     def loop(self):
         """The main game loop operator"""
+        # update the caption
+        pygame.display.set_caption(settings.window.caption)
         while True:
             # erase the screen
             World.current_room.show_background()
