@@ -59,3 +59,8 @@ def is_mouse_right_down(the_object: Object):
         if is_point_in_rect(System.mouse_position[0], System.mouse_position[1], rect):
             return True
     return False
+
+# About the keyboard
+def is_key_down(key: int):
+    """returns if the key on the keyboard is pressed"""
+    return System.keyboard_state[key]

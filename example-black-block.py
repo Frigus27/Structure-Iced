@@ -3,9 +3,11 @@ An example of Structure Iced.
 
 It will show a moving block on the screen with the
 rising and fading color of black. When you pressed
-the left mpuse key on it, the block will be filled 
+the left mpuse key on it, the block will be filled
 with pure black; and when you pressed the right key
-on it, it will be filled with pure white.
+on it, it will be filled with pure white. And by
+holding the space key, you'll be able to stop the
+block.
 
 The example shall show how to use the game structure
 Structure Iced. It may be a great example.
@@ -32,6 +34,9 @@ from iced.settings import settings
 # To create an image of the black block
 from pygame.surface import Surface
 
+# To import the values of pygame
+from pygame.locals import *
+
 class BlackBlock(Object):
     """The object we defines"""
 
@@ -48,6 +53,8 @@ class BlackBlock(Object):
         self.color_value = 0
         # This flags if the color is raising or fading.
         self.raising = True
+        # This flags if the block is moving
+        self.moving = True
     
     def loop(self):
         """
@@ -61,6 +68,11 @@ class BlackBlock(Object):
             self.color_value = 0
         if is_mouse_right_down(self):
             self.color_value = 255
+
+        self.moving = True
+        # Detect the state of the keyboard, and change.
+        if is_key_down(K_SPACE):
+            self.moving = False
 
         # The image controlling code
         if self.raising:
@@ -78,9 +90,11 @@ class BlackBlock(Object):
         # of the screen is not requiring.
         self.image_surface.fill((self.color_value, self.color_value, self.color_value))
 
-        # Now move the object by increasing the position.
-        self.InstanceVariables.pos_x += 3
-        self.InstanceVariables.pos_y += 2
+        # Now move the object by increasing the position
+        # if it is able to move.
+        if self.moving:
+            self.InstanceVariables.pos_x += 3
+            self.InstanceVariables.pos_y += 2
 
         # If the block has moved outside the screen,
         # then pull it back.

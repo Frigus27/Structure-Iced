@@ -41,6 +41,7 @@ class Game(object):
                     self.quit()
                 System.mouse_position = pygame.mouse.get_pos()
                 System.mouse_state = pygame.mouse.get_pressed()
+                System.keyboard_state = pygame.key.get_pressed()
             
             # loop the room
             World.current_room.loop()
