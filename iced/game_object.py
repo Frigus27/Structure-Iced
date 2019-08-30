@@ -35,7 +35,7 @@ class Object():
     def __init__(self):
         self.image = 0
         self.image_surface = pygame.surface.Surface((0, 0))
-        self.InstanceVariables = _InstanceVariables()
+        self.InstanceVariables = self._InstanceVariables()
 
     def set_image_by_filename(self, new_image_filename: str):
         """To set the image by filename and path"""
